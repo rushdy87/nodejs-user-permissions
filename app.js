@@ -1,5 +1,6 @@
 const express = require('express');
 const { users } = require('./data');
+const { authUser } = require('./basicAuth');
 const projectRouter = require('./routes/projects');
 
 const app = express();
@@ -12,7 +13,7 @@ app.get('/', (req, res) => {
   res.send('Home Page');
 });
 
-app.get('/dashboard', (req, res) => {
+app.get('/dashboard', authUser, (req, res) => {
   res.send('Dashboard Page');
 });
 
